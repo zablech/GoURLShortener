@@ -57,7 +57,7 @@ func YAMLHandler(yamlBytes []byte, fallback http.Handler) (http.HandlerFunc, err
 func parseYaml(data []byte) ([]pathURL, error) {
 
     var pathURLs []pathURL
-	error := yaml.Unmarshal(yamlBytes, &pathURLs)
+	error := yaml.Unmarshal(data, &pathURLs)
 	if error != nil {
 		return nil, error
 	}
@@ -69,7 +69,7 @@ func buildMap(pathURLs []pathURL) map[string]string {
 
     pathsToURLs := make(map[string]string)
 	for _, pathURL := range pathURLs {
-		pathsToUrls[pathURL.Path] = pathURL.URL
+		pathsToURLs[pathURL.Path] = pathURL.URL
 	}
 
     return pathsToURLs
